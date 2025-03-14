@@ -1,0 +1,17 @@
+D:\project\OccazNet\OccazNet\OccazNet.Core\bin\Debug\net8.0\OccazNet.Core.deps.json
+D:\project\OccazNet\OccazNet\OccazNet.Core\bin\Debug\net8.0\OccazNet.Core.runtimeconfig.json
+D:\project\OccazNet\OccazNet\OccazNet.Core\bin\Debug\net8.0\OccazNet.Core.dll
+D:\project\OccazNet\OccazNet\OccazNet.Core\bin\Debug\net8.0\OccazNet.Core.pdb
+D:\project\OccazNet\OccazNet\OccazNet.Core\bin\Debug\net8.0\OccazNet.Application.dll
+D:\project\OccazNet\OccazNet\OccazNet.Core\bin\Debug\net8.0\OccazNet.Application.pdb
+D:\project\OccazNet\OccazNet\OccazNet.Core\obj\Debug\net8.0\OccazNet.Core.csproj.AssemblyReference.cache
+D:\project\OccazNet\OccazNet\OccazNet.Core\obj\Debug\net8.0\OccazNet.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\project\OccazNet\OccazNet\OccazNet.Core\obj\Debug\net8.0\OccazNet.Core.AssemblyInfoInputs.cache
+D:\project\OccazNet\OccazNet\OccazNet.Core\obj\Debug\net8.0\OccazNet.Core.AssemblyInfo.cs
+D:\project\OccazNet\OccazNet\OccazNet.Core\obj\Debug\net8.0\OccazNet.Core.csproj.CoreCompileInputs.cache
+D:\project\OccazNet\OccazNet\OccazNet.Core\obj\Debug\net8.0\OccazNet.9A023B31.Up2Date
+D:\project\OccazNet\OccazNet\OccazNet.Core\obj\Debug\net8.0\OccazNet.Core.dll
+D:\project\OccazNet\OccazNet\OccazNet.Core\obj\Debug\net8.0\refint\OccazNet.Core.dll
+D:\project\OccazNet\OccazNet\OccazNet.Core\obj\Debug\net8.0\OccazNet.Core.pdb
+D:\project\OccazNet\OccazNet\OccazNet.Core\obj\Debug\net8.0\OccazNet.Core.genruntimeconfig.cache
+D:\project\OccazNet\OccazNet\OccazNet.Core\obj\Debug\net8.0\ref\OccazNet.Core.dll

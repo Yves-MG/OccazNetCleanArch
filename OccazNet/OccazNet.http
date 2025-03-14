@@ -1,0 +1,6 @@
+@OccazNet_HostAddress = http://localhost:5074
+
+GET {{OccazNet_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
