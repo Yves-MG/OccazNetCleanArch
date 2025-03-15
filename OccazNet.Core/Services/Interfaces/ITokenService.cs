@@ -9,6 +9,8 @@ namespace OccazNet.Core.Services.Interfaces
 {
     public interface ITokenService
     {
-        string GenerateToken(User userName);
+        Task<string> GenerateToken(User userName);
+        string GenerateRefreshToken();
+
     }
 }

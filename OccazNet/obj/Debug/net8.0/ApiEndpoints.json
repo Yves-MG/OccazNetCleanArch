@@ -9,7 +9,23 @@
     "Parameters": [
       {
         "Name": "loginDto",
-        "Type": "OccazNet.Core.Models.Users.Login",
+        "Type": "OccazNet.Application.Dtos.Users.Request.Login",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OccazNet.Controllers.AuthController",
+    "Method": "RefreshToken",
+    "RelativePath": "api/Auth/refresh-token",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "refreshToken",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -25,7 +41,7 @@
     "Parameters": [
       {
         "Name": "registerDto",
-        "Type": "OccazNet.Core.Models.Users.Register",
+        "Type": "OccazNet.Application.Dtos.Users.Request.Register",
         "IsRequired": true
       }
     ],

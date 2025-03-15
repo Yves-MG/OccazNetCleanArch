@@ -262,3 +262,4 @@ D:\project\OccazNet\OccazNet\OccazNet\bin\Debug\net8.0\OccazNet.Core.pdb
 D:\project\OccazNet\OccazNet\OccazNet\bin\Debug\net8.0\OccazNet.Infrastructure.pdb
 D:\project\OccazNet\OccazNet\OccazNet\bin\Debug\net8.0\OccazNet.Application.pdb
 D:\project\OccazNet\OccazNet\OccazNet\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\project\OccazNet\OccazNet\OccazNet\obj\Debug\net8.0\OccazNet.sourcelink.json

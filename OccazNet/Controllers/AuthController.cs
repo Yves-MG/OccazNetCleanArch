@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using OccazNet.Core.Models.Users;
+using OccazNet.Application.Dtos.Users.Request;
+using OccazNet.Core.Entities;
 using OccazNet.Core.Services.Interfaces;
 
 namespace OccazNet.Controllers
@@ -31,11 +33,22 @@ namespace OccazNet.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] Login loginDto)
         {
-            var token = await _authService.LoginAsync(loginDto);
-            if (token == null)
+            var result = await _authService.LoginAsync(loginDto);
+            if (result == null)
                 return Unauthorized("Email ou mot de passe incorrect.");
 
-            return Ok(new { Token = token });
+            return Ok(result.Data);
+        }
+
+        [HttpPost("refresh-token")]
+        public async Task<IActionResult> RefreshToken([FromBody] string refreshToken)
+        {
+            var result = await _authService.RefreshTokenAsync(refreshToken);
+            if (!result.IsSuccess)
+            {
+                return Unauthorized(result.Message);
+            }
+            return Ok(result.Data);
         }
     }
 }

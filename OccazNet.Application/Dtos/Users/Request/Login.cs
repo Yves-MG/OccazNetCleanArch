@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OccazNet.Core.Models.Users
+namespace OccazNet.Application.Dtos.Users.Request
 {
     public class Login
     {

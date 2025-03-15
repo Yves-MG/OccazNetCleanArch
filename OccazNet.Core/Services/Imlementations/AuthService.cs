@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using OccazNet.Application.Dtos.Users.Request;
+using OccazNet.Application.Dtos.Users.Response;
 using OccazNet.Core.Entities;
-using OccazNet.Core.Models.Users;
 using OccazNet.Core.Services.Interfaces;
 
 namespace OccazNet.Core.Services.Imlementations
@@ -24,28 +26,66 @@ namespace OccazNet.Core.Services.Imlementations
             _signInManager = signInManager;
             _tokenService = tokenService;
         }
-        public async Task<ServiceResult> LoginAsync(Login login)
+        public async Task<ServiceResult<AuthResp>> LoginAsync(Login login)
         {
             var user = await _userManager.FindByEmailAsync(login.UserName);
             if (user == null)
-                return (ServiceResult)ServiceResult.Failure("User not found.");
+                return (ServiceResult<AuthResp>)ServiceResult<AuthResp>.Failure("User not found.");
 
             var result = await _signInManager.PasswordSignInAsync(user, login.Password, false, false);
             if (result.Succeeded)
             {
-                var token = _tokenService.GenerateToken(user);
+                var role = await _userManager.GetRolesAsync(user);
+                var token = await _tokenService.GenerateToken(user); // Fix: await the task to get the string result
+                var refreshToken = _tokenService.GenerateRefreshToken();
+                user.RefreshToken = refreshToken;
+                user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(7);
+                await _userManager.UpdateAsync(user);
 
-                return (ServiceResult)ServiceResult.Success("Login successful.", token);
+                return ServiceResult<AuthResp>.Success("Connexion  réussie", new AuthResp
+                {
+                    Token = token,
+                    RefreshToken = refreshToken,
+                    RefreshTokenExpiryTime = user.RefreshTokenExpiryTime,
+                    Roles = user.Roles
+                });
             }
-
-            return (ServiceResult)ServiceResult.Failure("Invalid login attempt.");
+            else
+                return (ServiceResult<AuthResp>)ServiceResult<AuthResp>.Failure("User not found.");
         }
 
-        public async Task<ServiceResult> RegisterAsync(Register register)
+        public async Task<ServiceResult<AuthResp>> RefreshTokenAsync(string refreshToken)
+        {
+            var user = await _userManager.Users
+                .FirstOrDefaultAsync(u => u.RefreshToken == refreshToken && u.RefreshTokenExpiryTime > DateTime.UtcNow);
+            if (user == null)
+            {
+                return (ServiceResult<AuthResp>)ServiceResult<AuthResp>.Failure("Le refresh token est invalide ou expiré.");
+            }
+
+            var token = await _tokenService.GenerateToken(user); // Fix: await the task to get the string result
+            var newRefreshToken = _tokenService.GenerateRefreshToken();
+
+            user.RefreshToken = newRefreshToken;
+            user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(7);
+
+            await _userManager.UpdateAsync(user);
+
+            return ServiceResult<AuthResp>.Success("succes", new AuthResp
+            {
+                Token = token,
+                RefreshToken = newRefreshToken,
+                RefreshTokenExpiryTime = user.RefreshTokenExpiryTime,
+                Roles=(await _userManager.GetRolesAsync(user)).ToList()
+                // Roles = user.Roles.Split(',').ToList()
+            });
+        }
+
+        public async Task<ServiceResult<AuthResp>> RegisterAsync(Register register)
         {
             if (await _userManager.FindByEmailAsync(register.Email) != null)
 
-                return (ServiceResult)ServiceResult.Failure("User already exists.");
+                return (ServiceResult<AuthResp>)ServiceResult<AuthResp>.Failure("User already exists.");
 
             var user = new User
             {
@@ -56,15 +96,36 @@ namespace OccazNet.Core.Services.Imlementations
             };
             var result = await _userManager.CreateAsync(user, register.Password);
             if (!result.Succeeded)
-                return (ServiceResult)ServiceResult.Failure("Failed to create user.");
+                return (ServiceResult<AuthResp>)ServiceResult<AuthResp>.Failure("Failed to create user.");
+            
 
-            var roleResult = await _userManager.AddToRoleAsync(user, "Acheteur");
+            if(register.Roles != null && register.Roles.Any())
+            {
+                foreach (var role in register.Roles)
+                {
+                    if (!await _roleManager.RoleExistsAsync(role))
+                        return (ServiceResult<AuthResp>)ServiceResult<AuthResp>.Failure("Role does not exist.");
+                    var roleResult = await _userManager.AddToRoleAsync(user, role);
+                    if (!roleResult.Succeeded)
+                        return (ServiceResult<AuthResp>)ServiceResult<AuthResp>.Failure("Failed to assign role.");
+                }
+            }
+            // Générer le JWT et le Refresh Token
+            var token = await _tokenService.GenerateToken(user);
+            var refreshToken = _tokenService.GenerateRefreshToken();
 
-            if (!roleResult.Succeeded)
-                return (ServiceResult)ServiceResult.Failure("Failed to assign role.");
+            user.RefreshToken = refreshToken;
+            user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(7);
+            await _userManager.UpdateAsync(user);
 
-            return (ServiceResult)ServiceResult.Success("User registered successfully.");
-
+            return ServiceResult<AuthResp>.Success("Inscription réussie",new AuthResp
+            {
+                Token = token,
+                RefreshToken = refreshToken,
+                RefreshTokenExpiryTime = user.RefreshTokenExpiryTime,
+                Roles = user.Roles
+            });
+            
         }
     }
 }

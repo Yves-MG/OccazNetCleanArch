@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,10 @@ namespace OccazNet.Core.Entities
     {
         public string FirstName { get; set; } = string.Empty;   
         public string LastName { get; set; } = string.Empty;
-        public string Role { get; set; } = string.Empty;
+        [NotMapped]
+        public List<string> Roles { get; set; } = new List<string>();
+
+        public string RefreshToken { get; set; } = string.Empty;
+        public DateTime RefreshTokenExpiryTime { get; set; }
     }
 }

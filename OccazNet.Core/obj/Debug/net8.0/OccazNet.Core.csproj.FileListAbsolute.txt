@@ -15,3 +15,4 @@ D:\project\OccazNet\OccazNet\OccazNet.Core\obj\Debug\net8.0\refint\OccazNet.Core
 D:\project\OccazNet\OccazNet\OccazNet.Core\obj\Debug\net8.0\OccazNet.Core.pdb
 D:\project\OccazNet\OccazNet\OccazNet.Core\obj\Debug\net8.0\OccazNet.Core.genruntimeconfig.cache
 D:\project\OccazNet\OccazNet\OccazNet.Core\obj\Debug\net8.0\ref\OccazNet.Core.dll
+D:\project\OccazNet\OccazNet\OccazNet.Core\obj\Debug\net8.0\OccazNet.Core.sourcelink.json

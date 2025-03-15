@@ -9,3 +9,4 @@ D:\project\OccazNet\OccazNet\OccazNet.Application\obj\Debug\net8.0\OccazNet.Appl
 D:\project\OccazNet\OccazNet\OccazNet.Application\obj\Debug\net8.0\refint\OccazNet.Application.dll
 D:\project\OccazNet\OccazNet\OccazNet.Application\obj\Debug\net8.0\OccazNet.Application.pdb
 D:\project\OccazNet\OccazNet\OccazNet.Application\obj\Debug\net8.0\ref\OccazNet.Application.dll
+D:\project\OccazNet\OccazNet\OccazNet.Application\obj\Debug\net8.0\OccazNet.Application.sourcelink.json

@@ -2813,6 +2813,7 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.0",
+          "Microsoft.EntityFrameworkCore": "8.0.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "8.0.0",
           "OccazNet.Application": "1.0.0"
         },

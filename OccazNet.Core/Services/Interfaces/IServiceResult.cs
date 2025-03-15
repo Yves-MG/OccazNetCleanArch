@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace OccazNet.Core.Services.Interfaces
 {
-    public interface IServiceResult
+    public interface IServiceResult<T> 
     {
         bool IsSuccess { get; }
         string Message { get; }
-        object Data { get; }
+        T  Data { get; }
     }
 }

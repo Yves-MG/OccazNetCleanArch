@@ -17,3 +17,4 @@ D:\project\OccazNet\OccazNet\OccazNet.Infrastructure\obj\Debug\net8.0\OccazNet.I
 D:\project\OccazNet\OccazNet\OccazNet.Infrastructure\obj\Debug\net8.0\ref\OccazNet.Infrastructure.dll
 D:\project\OccazNet\OccazNet\OccazNet.Infrastructure\bin\Debug\net8.0\OccazNet.Infrastructure.runtimeconfig.json
 D:\project\OccazNet\OccazNet\OccazNet.Infrastructure\obj\Debug\net8.0\OccazNet.Infrastructure.genruntimeconfig.cache
+D:\project\OccazNet\OccazNet\OccazNet.Infrastructure\obj\Debug\net8.0\OccazNet.Infrastructure.sourcelink.json
